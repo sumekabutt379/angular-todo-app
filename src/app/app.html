@@ -1,0 +1,3 @@
+@for (t of tasks; track t.id) {
+  <app-todo-item [task]="t" (done)="onDone($event)" (remove)="deleteTask($event)"></app-todo-item>
+}
