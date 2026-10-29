@@ -1,3 +1,7 @@
-<p>{{ task.title }}</p>
+@if (task.done) {
+  <p><s>{{ task.title }}</s></p>
+} @else {
+  <p>{{ task.title }}</p>
+}
 <button (click)="markDone()">Done</button>
-<button (click)="removeTask()">GYM</button>
+<button (click)="removeTask()">Delete</button>

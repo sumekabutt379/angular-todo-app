@@ -16,12 +16,11 @@ export class App {
   fruits: string[] = ['Mango', 'Apple', 'Banana'];
   skills: string[] = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
   tasks: Task[] = [
-    { id: 1, title: 'HTML parho' },
-    { id: 2, title: 'Angular seekho' },
-    { id: 3, title: 'Portfolio banao' },
+    { id: 1, title: 'HTML parho', done: false },
+    { id: 2, title: 'Angular seekho', done: false },
+    { id: 3, title: 'Portfolio banao', done: false },
   ];
   nextId: number = 4;
-  doneCount: number = 0;
   newTask: string = '';
 
   increase(): void {
@@ -36,14 +35,9 @@ export class App {
     this.count = 0;
   }
 
-  onDone(title: string): void {
-    this.doneCount = this.doneCount + 1;
-    console.log(title + ' complete hua');
-  }
-
   addTask(): void {
     if (this.newTask.trim() !== '') {
-      this.tasks.push({ id: this.nextId, title: this.newTask });
+      this.tasks.push({ id: this.nextId, title: this.newTask, done: false });
       this.nextId = this.nextId + 1;
       this.newTask = '';
     }
@@ -51,5 +45,16 @@ export class App {
 
   deleteTask(id: number): void {
     this.tasks = this.tasks.filter((t) => t.id !== id);
+  }
+
+  toggleDone(id: number): void {
+    const task = this.tasks.find((t) => t.id === id);
+    if (task) {
+      task.done = !task.done;
+    }
+  }
+
+  countDone(): number {
+    return this.tasks.filter((t) => t.done).length;
   }
 }

@@ -1,3 +1,29 @@
+<h1>Mera Pehla Angular App</h1>
+<p>Main Angular seekh rahi hoon.</p>
+<h2>Hello, {{ userName }}</h2>
+
+<h2>Count: {{ count }}</h2>
+@if (count === 0) {
+  <p>Abhi koi click nahi hua</p>
+} @else {
+  <p>Clicks ho rahe hain</p>
+}
+<button [disabled]="count === 10" (click)="increase()">Increase</button>
+<button [disabled]="count === 0" (click)="decrease()">Decrease</button>
+<button (click)="reset()">Reset</button>
+
+<h2>Skills</h2>
+<ul>
+  @for (skill of skills; track skill) {
+    <li>{{ skill }}</li>
+  }
+</ul>
+
+<h2>Todo</h2>
+<input [(ngModel)]="newTask" placeholder="Naya task likho">
+<button (click)="addTask()">Add</button>
+
+<h3>Done: {{ countDone() }}</h3>
 @for (t of tasks; track t.id) {
-  <app-todo-item [task]="t" (done)="onDone($event)" (remove)="deleteTask($event)"></app-todo-item>
+  <app-todo-item [task]="t" (done)="toggleDone($event)" (remove)="deleteTask($event)"></app-todo-item>
 }
