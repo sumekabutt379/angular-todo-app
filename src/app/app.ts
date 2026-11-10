@@ -18,7 +18,7 @@ export class App {
   fruits: string[] = ['Mango', 'Apple', 'Banana'];
   skills: string[] = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
   
-  nextId: number = 4;
+  
   newTask: string = '';
 
   increase(): void {
@@ -33,24 +33,21 @@ export class App {
     this.count = 0;
   }
 
-  addTask(): void {
+    addTask(): void {
     if (this.newTask.trim() !== '') {
-           this.store.todos.push({ id: this.nextId, title: this.newTask, done: false });
-      this.nextId = this.nextId + 1;
+      this.store.addTask(this.newTask);
       this.newTask = '';
     }
   }
 
   deleteTask(id: number): void {
-        this.store.todos = this.store.todos.filter((t) => t.id !== id);
+        this.store.deleteTask(id);
   }
 
-  toggleDone(id: number): void {
-        const task = this.store.todos.find((t) => t.id === id);
-    if (task) {
-      task.done = !task.done;
-    }
+   toggleDone(id: number): void {
+    this.store.toggleDone(id);
   }
+  
 
   countDone(): number {
        return this.store.todos.filter((t) => t.done).length;
