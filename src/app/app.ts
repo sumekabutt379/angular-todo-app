@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { TodoStore } from './todo-store';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TodoItem, Task } from './todo-item/todo-item';
@@ -11,15 +12,12 @@ import { TodoItem, Task } from './todo-item/todo-item';
 })
 export class App {
   protected readonly title = signal('my-first-app');
+    store = inject(TodoStore);
   userName: string = 'Ali';
   count: number = 0;
   fruits: string[] = ['Mango', 'Apple', 'Banana'];
   skills: string[] = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
-  tasks: Task[] = [
-    { id: 1, title: 'HTML parho', done: false },
-    { id: 2, title: 'Angular seekho', done: false },
-    { id: 3, title: 'Portfolio banao', done: false },
-  ];
+  
   nextId: number = 4;
   newTask: string = '';
 
@@ -37,24 +35,24 @@ export class App {
 
   addTask(): void {
     if (this.newTask.trim() !== '') {
-      this.tasks.push({ id: this.nextId, title: this.newTask, done: false });
+           this.store.todos.push({ id: this.nextId, title: this.newTask, done: false });
       this.nextId = this.nextId + 1;
       this.newTask = '';
     }
   }
 
   deleteTask(id: number): void {
-    this.tasks = this.tasks.filter((t) => t.id !== id);
+        this.store.todos = this.store.todos.filter((t) => t.id !== id);
   }
 
   toggleDone(id: number): void {
-    const task = this.tasks.find((t) => t.id === id);
+        const task = this.store.todos.find((t) => t.id === id);
     if (task) {
       task.done = !task.done;
     }
   }
 
   countDone(): number {
-    return this.tasks.filter((t) => t.done).length;
+       return this.store.todos.filter((t) => t.done).length;
   }
 }

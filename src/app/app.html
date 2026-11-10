@@ -24,6 +24,13 @@
 <button (click)="addTask()">Add</button>
 
 <h3>Done: {{ countDone() }}</h3>
-@for (t of tasks; track t.id) {
+@for (t of store.todos; track t.id) {
   <app-todo-item [task]="t" (done)="toggleDone($event)" (remove)="deleteTask($event)"></app-todo-item>
 }
+
+<h2>Store Todos</h2>
+<ul>
+  @for (item of store.todos; track item) {
+       <li>{{ item.title }}</li>
+  }
+</ul>
