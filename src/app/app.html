@@ -23,14 +23,17 @@
 <input [(ngModel)]="newTask" placeholder="Naya task likho">
 <button (click)="addTask()">Add</button>
 
-<h3>Done: {{ countDone() }}</h3>
-@for (t of store.todos; track t.id) {
+<h3>Done:{{ store.doneCount() }}</h3>
+Pending: {{ store.pendingCount() }}
+@for (t of store.todos(); track t.id) {
   <app-todo-item [task]="t" (done)="toggleDone($event)" (remove)="deleteTask($event)"></app-todo-item>
 }
 
 <h2>Store Todos</h2>
 <ul>
-  @for (item of store.todos; track item) {
-       <li>{{ item.title }}</li>
+  @for (t of store.todos(); track t.id)  {
+          <li>{{ t.title }}</li>
   }
 </ul>
+<h2>Users Grid</h2>
+<app-users-grid />

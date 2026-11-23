@@ -3,9 +3,10 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TodoItem, Task } from './todo-item/todo-item';
+import { UsersGrid } from './users-grid/users-grid';
 
 @Component({
-  imports: [RouterOutlet, TodoItem, FormsModule],
+ imports: [RouterOutlet, TodoItem, FormsModule, UsersGrid],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -50,6 +51,6 @@ export class App {
   
 
   countDone(): number {
-       return this.store.todos.filter((t) => t.done).length;
+           return this.store.countDone();
   }
 }
