@@ -25,6 +25,7 @@
 
 <h3>Done:{{ store.doneCount() }}</h3>
 Pending: {{ store.pendingCount() }}
+<h3>Total: {{ store.totalCount() }}</h3>m
 @for (t of store.todos(); track t.id) {
   <app-todo-item [task]="t" (done)="toggleDone($event)" (remove)="deleteTask($event)"></app-todo-item>
 }
