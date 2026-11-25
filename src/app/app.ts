@@ -14,6 +14,11 @@ import { UsersGrid } from './users-grid/users-grid';
 export class App {
   protected readonly title = signal('my-first-app');
     store = inject(TodoStore);
+      constructor() {
+    this.store.message$.subscribe((msg) => {
+      console.log(msg);
+    });
+  }
   userName: string = 'Ali';
   count: number = 0;
   fruits: string[] = ['Mango', 'Apple', 'Banana'];
