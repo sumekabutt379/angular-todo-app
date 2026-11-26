@@ -1,6 +1,6 @@
 import { Service, signal, computed, effect } from '@angular/core';
 import { Task } from './todo-item/todo-item';
-import { of } from 'rxjs';
+import { of, interval } from 'rxjs';
 
 @Service()
 export class TodoStore {
@@ -52,4 +52,5 @@ export class TodoStore {
   pendingCount = computed(() => this.todos().filter((t) => !t.done).length);
     totalCount = computed(() => this.todos().length);
       message$ = of('Hello from Observable');
+        timer$ = interval(2000);
 }
