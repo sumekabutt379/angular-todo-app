@@ -25,7 +25,7 @@
 
 <h3>Done:{{ store.doneCount() }}</h3>
 Pending: {{ store.pendingCount() }}
-<h3>Total: {{ store.totalCount() }}</h3>m
+<h3>Total: {{ store.totalCount() }}</h3>
 @for (t of store.todos(); track t.id) {
   <app-todo-item [task]="t" (done)="toggleDone($event)" (remove)="deleteTask($event)"></app-todo-item>
 }
@@ -38,3 +38,7 @@ Pending: {{ store.pendingCount() }}
 </ul>
 <h2>Users Grid</h2>
 <app-users-grid />
+<nav>
+  <a routerLink="/users">Users</a>
+</nav>
+<router-outlet />

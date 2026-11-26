@@ -1,12 +1,12 @@
 import { TodoStore } from './todo-store';
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TodoItem, Task } from './todo-item/todo-item';
 import { UsersGrid } from './users-grid/users-grid';
 
 @Component({
- imports: [RouterOutlet, TodoItem, FormsModule, UsersGrid],
+  imports: [RouterOutlet, RouterLink, FormsModule, TodoItem, UsersGrid],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
